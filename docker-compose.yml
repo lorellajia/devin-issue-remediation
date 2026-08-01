@@ -1,0 +1,13 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      - DB_DIR=/app/data
+    volumes:
+      - ./data:/app/data
+      - ./issues.txt:/app/issues.txt
+    restart: unless-stopped

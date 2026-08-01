@@ -1,0 +1,6 @@
+# One GitHub issue URL per line.
+# `python trigger.py --all` will process all of these.
+https://github.com/lorellajia/superset/issues/1
+https://github.com/lorellajia/superset/issues/2
+https://github.com/lorellajia/superset/issues/3
+https://github.com/lorellajia/superset/issues/4

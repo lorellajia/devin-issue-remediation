@@ -239,7 +239,7 @@ docker compose exec app python worker.py --once
 
 | # | Type | Issue | PR |
 |---|------|-------|----|
-| 1 | Security (major version bump) | [Upgrade Flask 2.3.3 → 3.1.3](https://github.com/lorellajia/superset/issues/1) | _link once merged_ |
-| 2 | Security (patch bump) | [Upgrade setuptools 80.9.0 → 83.0.0](https://github.com/lorellajia/superset/issues/2) | _link once merged_ |
-| 3 | Code quality | [Remove unused import in daos/version.py](https://github.com/lorellajia/superset/issues/3) | _link once merged_ |
-| 4 | Type checking | [Remove unused type:ignore in utils/json.py](https://github.com/lorellajia/superset/issues/4) | _link once merged_ |
+| 1 | Security (major version bump) | [Upgrade Flask 2.3.3 → 3.1.3](https://github.com/lorellajia/superset/issues/1) | [#6](https://github.com/lorellajia/superset/pull/6) (open) |
+| 2 | Security (patch bump) | [Upgrade setuptools 80.9.0 → 83.0.0](https://github.com/lorellajia/superset/issues/2) | [#7](https://github.com/lorellajia/superset/pull/7) (open) |
+| 3 | Code quality | [Remove unused import in daos/version.py](https://github.com/lorellajia/superset/issues/3) | [#8](https://github.com/lorellajia/superset/pull/8) (open) |
+| 4 | Type checking | [Remove unused type:ignore in utils/json.py](https://github.com/lorellajia/superset/issues/4) | [#5](https://github.com/lorellajia/superset/pull/5) (merged) |

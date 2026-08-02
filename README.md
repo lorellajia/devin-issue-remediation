@@ -67,7 +67,7 @@ templates/dashboard.html   Observability dashboard
 issues.txt        The 4 target issue URLs
 ```
 
-## Quick start (for reviewers)
+## Quick start 
 
 Everything below runs entirely inside Docker — no local Python environment
 needed.
@@ -149,7 +149,7 @@ uvicorn main:app --reload
 python trigger.py --all
 ```
 
-## Optional: real GitHub webhook (production-shaped trigger)
+## GitHub Webhook
 
 Everything in "Quick start" above uses `trigger.py` as a stand-in for the
 event — that's sufficient to review the whole system end-to-end and is the

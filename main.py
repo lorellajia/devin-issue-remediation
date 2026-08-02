@@ -85,12 +85,21 @@ async def github_webhook(request: Request):
 
     action = payload.get("action")
     issue = payload.get("issue")
-    label = payload.get("label", {})
 
-    if action != "labeled" or not issue:
+    if not issue:
         return JSONResponse({"status": "ignored", "reason": "not a relevant issue event"})
 
-    if label.get("name") != TRIGGER_LABEL:
+    if action == "labeled":
+        # The label was added to an issue that already existed.
+        has_trigger_label = payload.get("label", {}).get("name") == TRIGGER_LABEL
+    elif action == "opened":
+        # GitHub reports "opened", not "labeled", when the issue is created
+        # with the label already attached -- check the issue's label list too.
+        has_trigger_label = any(l.get("name") == TRIGGER_LABEL for l in issue.get("labels", []))
+    else:
+        has_trigger_label = False
+
+    if not has_trigger_label:
         return JSONResponse({"status": "ignored", "reason": f"label is not '{TRIGGER_LABEL}'"})
 
     repo_full_name = payload["repository"]["full_name"]

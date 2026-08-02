@@ -9,10 +9,10 @@ Target fork: `https://github.com/lorellajia/superset`
 
 ## What this solves
 
-Large codebases accumulate a steady stream of low-to-medium complexity
+Large codebases accumulate a steady stream of complexity
 issues — dependency CVEs, lint failures, unused imports, stale type-ignore
-comments — that are individually cheap to fix but collectively eat up a lot
-of engineering time. This system turns "an issue needs fixing" into an
+comments — that are collectively eat up a lot of engineering time. 
+This system turns "an issue needs fixing" into an
 automated, observable, closed-loop workflow: **event in → Devin session →
 pull request out**, with no human writing the fix.
 
@@ -163,6 +163,11 @@ This requires a repo you control (to add a webhook to) and a public URL
 of the reviewable demo — it's here to show the code path is real, not just
 described.
 
+Note this path does **not** use `issues.txt` at all — that file is only read
+by `trigger.py`. The webhook handler pulls the issue title/body/URL straight
+out of the GitHub payload it receives, so any issue on the repo works, not
+just the 4 in `issues.txt`.
+
 1. **Set a shared secret** — add to `.env`:
    ```
    GITHUB_WEBHOOK_SECRET=<random hex string>
@@ -185,9 +190,12 @@ described.
    - Secret: the same value as `GITHUB_WEBHOOK_SECRET`
    - Events: select just "Issues"
 
-4. **Test it**: add the `devin-fix` label to any issue on that repo. GitHub's
-   webhook "Recent Deliveries" tab shows the request/response, and a new row
-   should show up on the dashboard within a few seconds.
+4. **Test it**: add the `devin-fix` label to an issue — either at creation
+   time or afterward, both work (the handler checks the issue's label list
+   on `"opened"` and the specific label on `"labeled"`, since GitHub reports
+   different `action` values for those two cases). GitHub's webhook "Recent
+   Deliveries" tab shows the request/response, and a new row should show up
+   on the dashboard within a few seconds.
 
 Note: a free ngrok tunnel's URL changes every time you restart it, so you'll
 need to update the webhook's Payload URL after a restart (or use a paid
